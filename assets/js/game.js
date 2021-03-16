@@ -1,3 +1,8 @@
+// Game States
+// "WIN" - Player robot has defeated all enemy-robots
+// * Fight all enemy-robots
+// * Defeate each enemy-robot
+// "LOSE" - Player robot's health is zero or less
 //window.alert("This is an alert! JavaScript is running!");
 
 var playerName = window.prompt("What is your robot's name?");
@@ -16,7 +21,12 @@ var playerMoney = 10;
 //You can also log multiple values at once like this
 console.log(playerName, playerAttack, playerHealth);
 
-var enemyName = "Roborto";
+var enemyNames = ["Roborto", "Amy Android", "Robo Trumble"];
+//var enemyName = "Roborto";
+console.log(enemyNames);
+console.log(enemyNames[0]);
+console.log(enemyNames[1]);
+console.log(enemyNames[2]);
 var enemyHealth = 50;
 var enemyAttack = 12;
 
@@ -85,4 +95,4 @@ var fight = function() {
 //function fight() {
     //window.alert("The fight has begun!");
 //}
-fight();
+// fight();
