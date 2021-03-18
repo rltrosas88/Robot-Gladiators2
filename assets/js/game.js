@@ -1,3 +1,18 @@
+//Wrap the game logic in a startGame() function
+//When the player is defeated or there are no more enemies, call an endGame() function that:
+// * Alerts the player's total stats
+// * asks the player if they want to play again
+// * If yes, call statGame() to restart the game
+//After the player skips or defeats an enemy (and there are still more robots to fight):
+// * Ask the player if they want to "shop"
+// * If no, continue as normal
+// * If yes, call the shop() function
+// * in the shop() function, ask player if they want to "refill" health, "upgrade" attack, or "leave" the shop
+// * If refill, subtract money points from player and increase health
+// * if upgrade, subtract money points from player and increase attack power
+// * if leave, alert goodby and exit the function
+// * if any other invalid option, call shop() again
+
 // Game States
 // "WIN" - Player robot has defeated all enemy-robots
 // * Fight all enemy-robots
@@ -120,27 +135,36 @@ var fight = function(enemyName) {
 //function fight() {
     //window.alert("The fight has begun!");
 //}
-// fight();
-for (var i = 0; i < enemyNames.length; i++) {
-    if (playerHealth > 0) {
-        // let player know what round they are in, remember that arrays start at 0 so it needs to have 1 added to it
-        window.alert("Welcome to Robot Gladators! Round " + (i + 1));
-    }
-    else {
-        window.alert ("You have lost your robot in battle! Game Over!");
-        break;
-    }
+// function to start a new game
+var startGame = function() {
+    // reset player stats
+    playerHealth = 100;
+    playerAttack = 10;
+    playerMoney = 10;
+    // fight();
+    for (var i = 0; i < enemyNames.length; i++) {
+        if (playerHealth > 0) {
+            // let player know what round they are in, remember that arrays start at 0 so it needs to have 1 added to it
+            window.alert("Welcome to Robot Gladators! Round " + (i + 1));
+            
+            // pick new enem to fight based on the index of the enemyNames array
+            var pickedEnemyName = enemyNames[i];
+            
+            //reset enemyHealth before starting new fight
+            enemyHealth = 50;
 
-    // pick new enem to fight based on the index of the enemyNames array
-    var pickedEnemyName = enemyNames[i];
+            // use debugger to pause script from running and check what's going on at the moment in the code
+        // debugger;
 
-    //reset enemyHealth before starting new fight
-    enemyHealth = 50;
-
-    // use debugger to pause script from running and check what's going on at the moment in the code
-    // debugger;
-
-    // pass the pickedEnemyName variable's value into the fight function, where it will assume the value of the enemyName parameters
-    // call fight function with enemy-robot
-    fight(pickedEnemyName);//enemyNames[i]);
-}
+        // pass the pickedEnemyName variable's value into the fight function, where it will assume the value of the enemyName parameters
+        // call fight function with enemy-robot
+        fight(pickedEnemyName);//enemyNames[i]);
+        }
+        else {
+            window.alert ("You have lost your robot in battle! Game Over!");
+            break;
+        }
+    }      
+};
+// start the game when the page loads
+//startGame();
