@@ -210,13 +210,14 @@ var endGame = function() {
 
 var shop = function() {
     // ask player what they'd like to do
-    var shopOptionPrompt = window.prompt("Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one. 'REFILL', 'UPGRADE', or 'LEAVE' to make a choice.");
+    var shopOptionPrompt = window.prompt("Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one. 1 for REFILL, 2 for UPGRADE, or 3 for LEAVE to make a choice.");
+    shopOptionPrompt = parseInt(shopOptionPrompt);
     //console.log("enterd the shop");
-    
+    //debugger;
     //use switch to carry out action
     switch (shopOptionPrompt) {
-        case "REFILL"://new case
-        case "refill":
+        //case "REFILL"://new case
+        case 1: //"refill":
             playerinfo.refillHealth();
             //if (playerinfo.money >= 7) {
                 //window.alert("Refilling player's health by 20 for 7 dollars.");
@@ -229,8 +230,8 @@ var shop = function() {
                 //window.alert("You don't have enough money!");
             //}
             break;
-        case "UPGRADE"://new case
-        case "upgrade":
+        //case "UPGRADE"://new case
+        case 2: //"upgrade":
             playerinfo.upgradeAttack();
             //if (playerinfo.money >= 7) {
                 //window.alert("Upgrading player's attack by 6 for 7 dollars.");
@@ -243,8 +244,8 @@ var shop = function() {
                 //window.alert("You don't have enough money!");
             //}
             break;
-        case "LEAVE"://new case
-        case "leave":
+        //case "LEAVE"://new case
+        case 3: //"leave":
             window.alert("Leaveing the store.");
 
             // do nothing, so function will end
@@ -253,6 +254,7 @@ var shop = function() {
             window.alert("You did not pick a valid option. Try again.");
 
             //call shop() again to force player to pick a valid option shop();
+            shop();
             break;
     }
 };
