@@ -199,13 +199,29 @@ var startGame = function() {
 // function to end the entire game
 var endGame = function() {
     window.alert("The game has now ended. Let's see how you did!");
-    // if player is still alive, player wins!
-    if (playerinfo.health > 0) {
-        window.alert("Great job, you've survived the game! You now have a score of " + playerinfo.money + ".");
+
+    //check localStorage for high score, if it's not there, use 0
+    var highScore = localStorage.getItem("highscore");
+    if (highScore === null) {
+        highScore = 0;
+    }
+    // if player has more money than the high score, player has new high score
+    if (playerinfo.money > highScore) {
+        localStorage.setItem("highscore", playerinfo.name);
+        localStorage.setItem("name", playerinfo.name);
+
+        alert(playerinfo.name + " now has the high score of " + playerinfo.money + "!");
     }
     else {
-        window.alert("You've lost your robot in battle.");
+        alert(playerinfo.name + " did not beat the high score of " + highScore + ". Maybe next time!");
     }
+    // if player is still alive, player wins!
+    //if (playerinfo.health > 0) {
+        //window.alert("Great job, you've survived the game! You now have a score of " + playerinfo.money + ".");
+    //}
+    //else {
+        //window.alert("You've lost your robot in battle.");
+    //}
     // ask player if they'd like to play again
     var playAgainConfirm = window.confirm("Would you like to play again?");
 
@@ -256,7 +272,7 @@ var shop = function() {
             break;
         //case "LEAVE"://new case
         case 3: //"leave":
-            window.alert("Leaveing the store.");
+            window.alert("Leaving the store.");
 
             // do nothing, so function will end
             break;
