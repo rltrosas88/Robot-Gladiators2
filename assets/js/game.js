@@ -53,42 +53,49 @@ var fightOrSkip = function(){
 
 //this turns the fight function into a variable
 var fight = function(enemy) {
+    //keep track of who goes first
+    var isPlayerTurn = true;
+
+    //randomly change turn order
+    if (Math.random() > 0.5) {
+        isPlayerTurn = false;
+    }
     //console.log(enemy);
-    //Alert players that they are starting th eround
     //window.alert("Welcome to Robot Gladiators!");
     while (enemy.health > 0 && playerinfo.health > 0) {
-        // ask player if they'd like to fight or skip using fightOrSkip function
-        if (fightOrSkip()) {
-            // if ture, leave fight by breaking loop
-            break;
-        } 
-        //var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
-        //console.log(promptFight);
+        if (isPlayerTurn) {
+            // ask player if they'd like to fight or skip using fightOrSkip function
+            if (fightOrSkip()) {
+                // if ture, leave fight by breaking loop
+                break;
+            } 
+            //var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
+            //console.log(promptFight);
 
-        // if player picks "skip" confirm and then stop the loop
-        //if (promptFight === "skip" || promptFight === "SKIP") {
-            //confirm player wants to skip
-            //var confirmSkip = window.confirm("Are you sure you'd like to quit?");
+            // if player picks "skip" confirm and then stop the loop
+            //if (promptFight === "skip" || promptFight === "SKIP") {
+                //confirm player wants to skip
+                //var confirmSkip = window.confirm("Are you sure you'd like to quit?");
 
-            //if (confirmSkip) {
-                //window.alert(playerinfo.name + " has decided to skip this fight. Goodbye!");
-                //playerinfo.money = Math.max(0, playerinfo.money - 10);
-                //console.log("playerMoney", playerinfo.money)
-                //break;
-                //window.alert(playerName + " has chosen to skip the fight!");
+                //if (confirmSkip) {
+                    //window.alert(playerinfo.name + " has decided to skip this fight. Goodbye!");
+                    //playerinfo.money = Math.max(0, playerinfo.money - 10);
+                    //console.log("playerMoney", playerinfo.money)
+                    //break;
+                    //window.alert(playerName + " has chosen to skip the fight!");
+                //}
             //}
-        //}
-        // if player chooses to fight, then fight
-        //if (promptFight === "fight" || promptFight === "FIGHT") {
-            //generate random damage value based on player's attack power
-        var damage = randomNumber(playerinfo.attack - 3, playerinfo.attack);
-        //Subtract the value of 'playerAttack' from the value of 'enemyHealth' and use that result to update the value in the 'enemyHealth' variable
-        enemy.health = Math.max(0, enemy.health - damage);//playerAttack);
+            // if player chooses to fight, then fight
+            //if (promptFight === "fight" || promptFight === "FIGHT") {
+                //generate random damage value based on player's attack power
+            var damage = randomNumber(playerinfo.attack - 3, playerinfo.attack);
+            //Subtract the value of 'playerAttack' from the value of 'enemyHealth' and use that result to update the value in the 'enemyHealth' variable
+            enemy.health = Math.max(0, enemy.health - damage);//playerAttack);
 
-        //Log a resulting message to the console so we know that it worked.
-        console.log(
-        playerinfo.name + " attacked " + enemy.name + ". " + enemy.name + " now has " + enemy.health + " health remaining."
-        );
+            //Log a resulting message to the console so we know that it worked.
+            console.log(
+            playerinfo.name + " attacked " + enemy.name + ". " + enemy.name + " now has " + enemy.health + " health remaining."
+            );
 
             //check enemy's health
             if (enemy.health <= 0) {
@@ -99,11 +106,11 @@ var fight = function(enemy) {
 
                 //leave whie() loop since enemy is dead
                 break;
-
             }
             else {
                 window.alert(enemy.name + " still has " + enemy.health + " health left.");
             }
+        } else {
             // generate random dagae value based on enemy's attack power
             var damage = randomNumber(enemy.attack - 3, enemy.attack);
 
@@ -132,6 +139,9 @@ var fight = function(enemy) {
         //} else {
             //window.alert("You need to choose a valid option. Try again!");
         //}   
+        // switch turn order for next round
+        isPlayerTurn = !isPlayerTurn;
+    }
 };
 // this creates a function named "fight"
 //function fight() {
